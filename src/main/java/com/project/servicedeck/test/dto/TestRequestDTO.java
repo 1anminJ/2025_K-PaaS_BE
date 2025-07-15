@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter
 public class TestRequestDTO {
-    // 테스트용
+
     @NotBlank(message = "이름은 필수 입력값입니다.")
     private String name;
 }

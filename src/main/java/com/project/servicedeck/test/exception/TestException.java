@@ -14,14 +14,14 @@ import java.util.Map;
 @Hidden
 public class TestException {
 
-    // DTO 검증 실패 처리
+    // DTO 실패 검증
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?> handleValidationException(MethodArgumentNotValidException ex) {
+    public ResponseEntity<Map<String, String>> handleValidationException(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
 
-        ex.getBindingResult().getFieldErrors().forEach(error -> {
-            errors.put(error.getField(), error.getDefaultMessage());
-        });
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }

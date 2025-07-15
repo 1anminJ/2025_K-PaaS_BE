@@ -19,11 +19,11 @@ public class TestService {
     public List<Test> getAllTests() {
         return testRepository.findAll();
     }
-    public void addData(TestRequestDTO data){
-        Test test = new Test();
-        test.setName(data.getName());
-        test.setCreatedAt(LocalDateTime.now());
+    public void addData(TestRequestDTO data) {
+        Test test = Test.builder()
+                .name(data.getName())
+                .build();
 
         testRepository.save(test);
-        System.out.println("데이터 추가 성공");}
+    }
 }
